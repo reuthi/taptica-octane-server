@@ -1,0 +1,27 @@
+{
+  "name": "taptica",
+  "version": "1.0.0",
+  "description": "contact form",
+  "main": "server.js",
+  "scripts": {
+    "test": "test"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bluebird": "^3.4.6",
+    "body-parser": "^1.15.2",
+    "email-templates": "^2.4.1",
+    "express": "^4.14.0",
+    "express-session": "^1.14.1",
+    "mysql": "^2.11.1",
+    "nodemailer": "^0.7.1",
+    "passport": "^0.3.2",
+    "passport-facebook": "^2.1.1",
+    "passport-google-oauth": "^1.0.0",
+    "passport-instagram": "^1.0.0",
+    "passport-instagram-token": "^2.3.0",
+    "passport-twitter": "^1.0.4",
+    "passport-youtube-v3": "^2.0.0"
+  }
+}
