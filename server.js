@@ -27,8 +27,8 @@ var twitterToken    = '';
 var interests       = '';
 
 
-app.listen(8080, function () {
-    console.log('Taptica-Octane Registration Service is listening on port 8080');
+app.listen(3000, function () {
+    console.log('Taptica-Octane Registration Service is listening on port 3000');
 });
 
 app.use(bodyParser.json());
@@ -218,7 +218,7 @@ passport.deserializeUser(function(obj, done) {
 passport.use(new TwitterStrategy({
         consumerKey: 'ndsj16m3ZkEInL34UuwqMlcRD',
         consumerSecret: 'SSpyniicP4W5GVo2XbjthAUFXoALhAzPh2V58dcuH3lD6ECTDG',
-        callbackURL: "http://localhost:8080/auth/twitter/callback"
+        callbackURL: "http://www.octaneignite.com/pub_signup.html:3000/auth/twitter/callback"
     },
     function(token, tokenSecret, profile, done) {
 
@@ -244,7 +244,7 @@ app.get('/auth/twitter/callback',
 passport.use(new FacebookStrategy({
     clientID: '682465275263609',
     clientSecret: '1da96959088393ffc0e245b2da3f301e',
-    callbackURL: "http://localhost:8080/auth/facebook/callback"
+    callbackURL: "http://www.octaneignite.com/pub_signup.html:3000/auth/facebook/callback"
   },
   function(accessToken, refreshToken, profile, done) {
         
@@ -272,7 +272,7 @@ app.get('/auth/facebook/callback',
 passport.use(new GoogleStrategy({
     clientID: '1085017537701-hmhemvf00r14ptsjkffh63ipdv6dp3ig.apps.googleusercontent.com',
     clientSecret: 'y7Ai9D1f98wV06EUTePdRcPI',
-    callbackURL: "http://localhost:8080/auth/google/callback"
+    callbackURL: "http://www.octaneignite.com/pub_signup.html:3000/auth/google/callback"
   },
   function(accessToken, refreshToken, profile, done) {
         // var user = profile;
@@ -304,7 +304,7 @@ app.get('/auth/google/callback',
 passport.use(new InstagramTokenStrategy({
     clientID: 'ee714ddb970740a3aaab81a8fec80f10',
     clientSecret: 'd7d2b1d305f8426fab8501bac23f0aa7',
-    callbackURL: "http://localhost:8080/auth/instagram/callback"
+    callbackURL: "http://www.octaneignite.com/pub_signup.html:3000/auth/instagram/callback"
   },
   function(accessToken, refreshToken, profile, done) {
         // var user = profile;
