@@ -58,7 +58,7 @@ var smtpTransport = nodemailer.createTransport("SMTP",{
     service: "Gmail",
     auth: {
         user: "contact@octaneignite.com",
-        pass: "pink2020"
+        pass: "Pinky2020"
     }
 });
 
@@ -76,11 +76,11 @@ connection.query('SELECT * FROM octane_users_interests',function(err,rows){
 
 
 
-connection.query('SELECT * FROM octane_users',function(err,rows){
-  if(err) throw err;
-  console.log('Data received from Db:');
-  console.log(rows);
-});
+// connection.query('SELECT * FROM octane_users',function(err,rows){
+//   if(err) throw err;
+//   console.log('Data received from Db:');
+//   console.log(rows);
+// });
 
 
 connection.query('SELECT * FROM octane_interests',function(err,rows){
@@ -130,7 +130,7 @@ app.post('/signin',function(req, res) {
                         "YouTube_token": youtubeToken,
                     }
 
-    connection.query('INSERT INTO octane_users SET ?', octaneUser , function(err,res) {
+    connection.query('INSERT INTO octane_users SET ?', octaneUser , function(err, res) {
 
         if(err) throw err;
         else {
@@ -154,46 +154,46 @@ app.post('/signin',function(req, res) {
 
                             if(err) throw err;
                             
-                            else {
-                                console.log('Last insert to DB:', res);
-
-                                // *** sending mail to the user: *** //    
-                                var mailOptions = {
-                                to: user.email,
-                                subject: 'hello from Octane',
-                                attachments: [{
-                                    filename: "signature.png",
-                                    filePath: process.cwd() + "/signature.png",
-                                    cid: "logo-mail"
-                                }],
-                                html: `
-                                        <h4>Congrats! You've signed up in the Octane system!</h4>
-                                        <h4>Below please find your login: </h4>
-                                        <h4>Email: ${user.email}</h4>
-                                        <h4>Password: ${user.pass}</h4>
-                                        <h4>For any questions please contact us at : contact@octaneignite.com</h4>
-                                        <h4>I'm are looking forward to work tougher <h4>
-                                        <img src="cid:logo-mail" alt="">
-                                        `
-                                }
-                                console.log(mailOptions);
-                                smtpTransport.sendMail(mailOptions, function (error, response) {
-                                    if (error) {
-                                        console.log(error);
-                                        res.end("error");
-                                    } else {
-                                        console.log("Message sent: " + response.message);
-                                        // res.end("sent");
-                                    };
-                                });
-                            };
+                            else console.log('Last insert to DB:', res);
                         });
                     };
                  };
-            });          
+            });
         };
     });
-    res.end('Sign in Succesful');
+                        
+
+    // *** sending mail to the user: *** //    
+    var mailOptions = {
+    to: user.email,
+    subject: 'Welcome to Octane',
+    attachments: [{
+        filename: "signature.png",
+        filePath: process.cwd() + "/signature.png",
+        cid: "logo-mail"
+    }],
+    html: `
+            <h4>Congrats! You've signed up in the Octane system!</h4>
+            <h4>Below please find your login: </h4>
+            <h4>Email: ${user.email}</h4>
+            <h4>Password: ${user.pass}</h4>
+            <h4>For any questions please contact us at : contact@octaneignite.com</h4>
+            <h4>I'm are looking forward to work tougher <h4>
+            <img src="cid:logo-mail" alt="">
+            `
+    }
+    console.log(mailOptions);
+    smtpTransport.sendMail(mailOptions, function (error, response) {
+        if (error) {
+            console.log(error);
+            // res.end("error");
+        } else {
+            console.log("Message sent: " + response.message);
+            // res.end("sent");
+        };
+    });
+
+    res.send('login succefull');
 });
 
 
