@@ -70,8 +70,8 @@ app.get('/', function(req, res) {
 
 connection.query('SELECT * FROM octane_users_interests',function(err,rows){
   if(err) throw err;
-  console.log('Data received from Db:');
-  console.log(rows);
+//   console.log('Data received from Db:');
+//   console.log(rows);
 });
 
 
@@ -107,6 +107,8 @@ app.post('/signin',function(req, res) {
     // user {"id": "", name":"","phone":"","email":"","pass":"","country":"","state":"","interests":[{"name":"","id":""}] }
     console.log('user', user);
 
+    const now = new Date();
+    const nowMilisec = (Date.parse(now) + 3600 * 3 * 1000);
     
     var octaneUser = {
                         "OctaneId": 0,
@@ -128,13 +130,14 @@ app.post('/signin',function(req, res) {
                         "Instagram_token": instagremToken,
                         "YouTube_id": youtubeId,
                         "YouTube_token": youtubeToken,
+                        "Timestamp": nowMilisec
                     }
 
     connection.query('INSERT INTO octane_users SET ?', octaneUser , function(err, res) {
 
         if(err) throw err;
         else {
-            console.log('Last insert to DB:', res);
+            console.log('Last insert to DB:');
             var email = JSON.stringify(`${user.email}`);
             
             // *** getting the octane id from the DB: *** //
@@ -154,7 +157,7 @@ app.post('/signin',function(req, res) {
 
                             if(err) throw err;
                             
-                            else console.log('Last insert to DB:', res);
+                            else console.log('Last insert to DB:');
                         });
                     };
                  };
@@ -188,7 +191,7 @@ app.post('/signin',function(req, res) {
             console.log(error);
             // res.end("error");
         } else {
-            console.log("Message sent: " + response.message);
+            console.log("Message sent: ");
             // res.end("sent");
         };
     });
